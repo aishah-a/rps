@@ -24,6 +24,7 @@ function getComputerChoice(max) {
             computerChoice = "scissors";
             break;
     }
+    // Display computer move
     return computerChoice;
 }
 
@@ -34,40 +35,49 @@ function getComputerChoice(max) {
     // case sensitivity
     // only "rock", "paper" and "scissors" as input
 
+
 function getHumanChoice() {
-    
-    let humanInput = prompt("Your turn: rock, paper or scissors? Enter your choice.");
+
+    let input = prompt("Your turn: rock, paper or scissors? Enter your choice.");
 
     // normalize input
-    humanInput = humanInput.toLowerCase();
-    console.log(humanInput);
-
+    input = input.toLowerCase();
+    
     // check input is one of three moves
-    if (humanInput !== "rock" && humanInput !== "paper" && humanInput !== "scissors") {
+    if (input !== "rock" && input !== "paper" && input !== "scissors") {
         alert("Please choose \"rock\", \"paper\", or \"scissors\".");
-        getHumanChoice();
+        input = prompt("Your turn: rock, paper or scissors? Enter your choice.");
     }
-    // check player input
-    let humanChoice;
-    switch (humanInput) {
+
+    switch (input) {
         case "rock":
-            humanChoice = "rock"
-            console.log("You played " + humanChoice);
-            break;
+            console.log("you played " + input);
+        break;
         case "paper":
-            humanChoice = "paper"
-            console.log("You played " + humanChoice);
-            break;
+            console.log("you played " + input);
+        break;
         case "scissors":
-            humanChoice = "scissors"
-            console.log("You played " + humanChoice);
-            break;
+            console.log("you played " + input);
+        break;
     }
 
 }
 
-// Display computer move
-// Check if player move beats computer
+// Check if player move beats computer - PLAY A ROUND
+
+// create score variables
+
+let humanScore = 0;
+let computerScore = 0;
+
+// gameplay
+
+function playRound(humanChoice, computerChoice) {
+    
+
+}
+
+
 // if player move and computer move are the same, display tie message
 // if player move beats computer move, display player win message
 // if player move loses to computer move, display computer win message
