@@ -19,6 +19,10 @@ The game will be played entirely in the console, however the user input will be 
 #### Gameplay
   - Set computer move at random
   - Get player move
+    + make sure input is correct
+    + ensure type is string _(prompt() always returns a string as input)_
+    + only "rock", "paper" and "scissors" accepted as input
+    + case sensitivity issues
   - Display computer move
   - Check if player move beats computer
     + if player move and computer move are the same, display tie message
