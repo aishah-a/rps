@@ -11,19 +11,19 @@ function getComputerChoice(max) {
     let number = Math.floor(Math.random() * max);
     // console.log(number);
 
-    // assign numbers 0, 1, 2 to rock, paper and scissors
+    // assign numbers 0, 1, 2 to ROCK, PAPER and SCISSORS
     // random number determines computer move
 
     let computerChoice;
     switch (number) {
         case 0:
-            computerChoice = "rock";
+            computerChoice = "ROCK";
             break;
         case 1:
-            computerChoice = "paper";
+            computerChoice = "PAPER";
             break;
         case 2:
-            computerChoice = "scissors";
+            computerChoice = "SCISSORS";
             break;
     }
     // Display computer move
@@ -35,35 +35,59 @@ function getComputerChoice(max) {
 // make sure input is correct
     // type: string
     // case sensitivity
-    // only "rock", "paper" and "scissors" as input
+    // only "rock", "PAPER" and "SCISSORS" as input
 
 
 function getHumanChoice() {
 
-    let input = prompt("Your turn: rock, paper or scissors? Enter your choice.");
+    let input;
 
-    // normalize input
-    input = input.toLowerCase();
-    
-    // check input is one of three moves
-    if (input !== "rock" && input !== "paper" && input !== "scissors") {
-        alert("Please choose \"rock\", \"paper\", or \"scissors\".");
-        input = prompt("Your turn: rock, paper or scissors? Enter your choice.");
+// get input from player
+    function getInput() {
+        input = prompt("Your turn: ROCK, PAPER or SCISSORS? Enter your choice.");
+
+        if (input !== null && input !== undefined && input !== "") {
+            // normalize case sensitivity
+            input = input.toUpperCase();
+            return input;
+        } else if (input === "" || input == undefined || input == "" ) {
+            getInput();
+            return input;
+        }
     }
+    
+// check input is one of three moves
+
+    function checkInput() {
+        if (input !== "ROCK" && input !== "PAPER" && input !== "SCISSORS") {
+            console.log("wrong!");
+            alert("Please choose \"ROCK\", \"PAPER\", or \"SCISSORS\".");
+            getInput();
+            checkInput();
+        }
+    }
+
+    getInput();
+    checkInput();
+    console.log(input);
+
+
+    // store input in a humanChoice variable, for gameplay
 
     let humanChoice;
     switch (input) {
-        case "rock":
+        case "ROCK":
             humanChoice = input;
         break;
-        case "paper":
+        case "PAPER":
             humanChoice = input;
         break;
-        case "scissors":
+        case "SCISSORS":
             humanChoice = input;
         break;
     }
     return humanChoice;
+
 }
 
 // Check if player move beats computer - PLAY A ROUND
@@ -76,12 +100,13 @@ let computerScore = 0;
 
 function playRound() {
     // get computer move
+    
     const computerChoice = getComputerChoice(3);
     // get player move
-    const humanChoice = getHumanChoice();
+    const humanChoice = getInput();
 
-    console.log("You played " + humanChoice);
-    console.log("The computer played " + computerChoice);
+    console.log("Your move: " + humanChoice);
+    console.log("Computer move: " + computerChoice);
 
     // compare moves
     // if player move and computer move are the same, display tie message
@@ -89,13 +114,38 @@ function playRound() {
         console.log("tie!");
     } else if (
         // if player move beats computer move, display player win message
-        (humanChoice === "rock" && computerChoice === "scissors") ||
-        (humanChoice === "paper" && computerChoice === "rock") ||
-        (humanChoice === "scissors" && computerChoice === "paper")) {
+        (humanChoice === "ROCK" && computerChoice === "SCISSORS") ||
+        (humanChoice === "PAPER" && computerChoice === "ROCK") ||
+        (humanChoice === "SCISSORS" && computerChoice === "PAPER")) {
         console.log("You win!");
+        humanScore++
     } else {
         // if player move loses to computer move, display computer win message
         console.log("You lose!");
+        computerScore++
     }
+
+    console.log("Your score: " + humanScore);
+    console.log("Computer score: " + computerScore);
 }
 
+
+
+function playGame() {
+    // play round
+    // check score at end of each round
+    // if player OR computer score = 5, stop game
+    // declare winner
+    // ask to play again?
+    // reset game
+        let gameRound = 1;
+        console.log("Round: " + gameRound);
+    
+        for (let i = 0; i <= 5; i++) {
+            playRound();
+            gameRound++;
+            console.log("Round: " + gameRound);
+        }   
+    }
+
+   
