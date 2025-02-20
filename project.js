@@ -49,17 +49,23 @@ function getHumanChoice() {
         input = prompt("Your turn: rock, paper or scissors? Enter your choice.");
     }
 
+    let humanChoice;
     switch (input) {
         case "rock":
+            humanChoice = input;
             console.log("you played " + input);
         break;
         case "paper":
+            humanChoice = input;
             console.log("you played " + input);
         break;
         case "scissors":
+            humanChoice = input;
             console.log("you played " + input);
         break;
     }
+
+    return humanChoice;
 
 }
 
