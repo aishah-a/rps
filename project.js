@@ -5,9 +5,11 @@
         multiply output by 3 to get a number between 0 and 2 (3 is excluded)
     */
 
+
+// FUNCTION MUST BE CALLED WITH 3 AS ARGUMENT
 function getComputerChoice(max) {
     let number = Math.floor(Math.random() * max);
-    console.log(number);
+    // console.log(number);
 
     // assign numbers 0, 1, 2 to rock, paper and scissors
     // random number determines computer move
@@ -53,37 +55,47 @@ function getHumanChoice() {
     switch (input) {
         case "rock":
             humanChoice = input;
-            console.log("you played " + input);
         break;
         case "paper":
             humanChoice = input;
-            console.log("you played " + input);
         break;
         case "scissors":
             humanChoice = input;
-            console.log("you played " + input);
         break;
     }
-
     return humanChoice;
-
 }
 
 // Check if player move beats computer - PLAY A ROUND
 
 // create score variables
-
 let humanScore = 0;
 let computerScore = 0;
 
 // gameplay
 
-function playRound(humanChoice, computerChoice) {
-    
+function playRound() {
+    // get computer move
+    const computerChoice = getComputerChoice(3);
+    // get player move
+    const humanChoice = getHumanChoice();
 
+    console.log("You played " + humanChoice);
+    console.log("The computer played " + computerChoice);
+
+    // compare moves
+    // if player move and computer move are the same, display tie message
+    if (humanChoice === computerChoice) {
+        console.log("tie!");
+    } else if (
+        // if player move beats computer move, display player win message
+        (humanChoice === "rock" && computerChoice === "scissors") ||
+        (humanChoice === "paper" && computerChoice === "rock") ||
+        (humanChoice === "scissors" && computerChoice === "paper")) {
+        console.log("You win!");
+    } else {
+        // if player move loses to computer move, display computer win message
+        console.log("You lose!");
+    }
 }
 
-
-// if player move and computer move are the same, display tie message
-// if player move beats computer move, display player win message
-// if player move loses to computer move, display computer win message
