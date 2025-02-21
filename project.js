@@ -90,62 +90,72 @@ function getHumanChoice() {
 
 }
 
-// Check if player move beats computer - PLAY A ROUND
-
-// create score variables
-let humanScore = 0;
-let computerScore = 0;
-
-// gameplay
-
-function playRound() {
-    // get computer move
-    
-    const computerChoice = getComputerChoice(3);
-    // get player move
-    const humanChoice = getInput();
-
-    console.log("Your move: " + humanChoice);
-    console.log("Computer move: " + computerChoice);
-
-    // compare moves
-    // if player move and computer move are the same, display tie message
-    if (humanChoice === computerChoice) {
-        console.log("tie!");
-    } else if (
-        // if player move beats computer move, display player win message
-        (humanChoice === "ROCK" && computerChoice === "SCISSORS") ||
-        (humanChoice === "PAPER" && computerChoice === "ROCK") ||
-        (humanChoice === "SCISSORS" && computerChoice === "PAPER")) {
-        console.log("You win!");
-        humanScore++
-    } else {
-        // if player move loses to computer move, display computer win message
-        console.log("You lose!");
-        computerScore++
-    }
-
-    console.log("Your score: " + humanScore);
-    console.log("Computer score: " + computerScore);
-}
-
-
-
 function playGame() {
+
+    // create score variables
+    let humanScore = 0;
+    let computerScore = 0;
+
     // play round
     // check score at end of each round
     // if player OR computer score = 5, stop game
-    // declare winner
-    // ask to play again?
-    // reset game
-        let gameRound = 1;
-        console.log("Round: " + gameRound);
+    let gameRound = 1;
     
-        for (let i = 0; i <= 5; i++) {
-            playRound();
-            gameRound++;
-            console.log("Round: " + gameRound);
-        }   
+    for (let i = 0; i < 5; i++) {
+        console.log("Round: " + gameRound);
+        playRound();
+        gameRound++;
+        checkScore();
     }
 
-   
+    // Check if player move beats computer - PLAY A ROUND
+    function playRound() {
+        // get computer move
+        
+        const computerChoice = getComputerChoice(3);
+        // get player move
+        const humanChoice = getHumanChoice();
+    
+        // compare moves
+        // if player move and computer move are the same, display tie message
+        if (humanChoice === computerChoice) {
+            console.log("Tie! You both played " + humanChoice);
+        } else if (
+            // if player move beats computer move, display player win message
+            (humanChoice === "ROCK" && computerChoice === "SCISSORS") ||
+            (humanChoice === "PAPER" && computerChoice === "ROCK") ||
+            (humanChoice === "SCISSORS" && computerChoice === "PAPER")) {
+            console.log("You win! You played " + humanChoice + ". The computer played " + computerChoice);
+            humanScore++
+        } else {
+            // if player move loses to computer move, display computer win message
+            console.log("You lose! You played " + humanChoice + ". The computer played " + computerChoice);
+            computerScore++
+        }
+    
+        console.log("Your score: " + humanScore);
+        console.log("Computer score: " + computerScore);
+    }
+    
+    // declare winner
+    // check score after 5 rounds
+
+    function checkScore() {
+        if (gameRound === 6) {
+            if (humanScore > computerScore) {
+                console.log("WINNER! Your score is: " + humanScore);
+                console.log("The computer score is: " + computerScore);
+            } else if (humanScore < computerScore) {
+                console.log("You lost! Your score is: " + humanScore);
+                console.log("The computer score is: " + computerScore);
+            } else if (humanScore === computerScore) {
+                console.log("It's a tie! You didn't beat the computer.");
+            }
+        }
+    }
+
+
+    // ask to play again?
+    // reset game
+
+}
