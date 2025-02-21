@@ -19,8 +19,14 @@ The game will be played entirely in the console, however the user input will be 
 #### Gameplay
   - Set computer move at random
   - Get player move
+    + make sure input is correct
+    + ensure type is string _(prompt() always returns a string as input)_
+    + only "rock", "paper" and "scissors" accepted as input
+    + case sensitivity issues
   - Display computer move
   - Check if player move beats computer
     + if player move and computer move are the same, display tie message
     + if player move beats computer move, display player win message
     + if player move loses to computer move, display computer win message
+***
+The brief for the project can be found [here](https://www.theodinproject.com/lessons/foundations-rock-paper-scissors), as part of The Odin Project.
