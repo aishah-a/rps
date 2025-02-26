@@ -60,7 +60,6 @@ function getHumanChoice() {
 
     function checkInput() {
         if (input !== "ROCK" && input !== "PAPER" && input !== "SCISSORS") {
-            console.log("wrong!");
             alert("Please choose \"ROCK\", \"PAPER\", or \"SCISSORS\".");
             getInput();
             checkInput();
