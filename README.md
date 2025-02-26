@@ -1,4 +1,4 @@
-# TOP-calculator
+# TOP-rps
 
 ## Assignment
 **Step 1: Write the logic to get the computer choice** <br>
