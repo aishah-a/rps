@@ -23,50 +23,50 @@ function getComputerChoice(max) {
 
 function getHumanChoice() {
 
-//     let input;
-//     function getInput() {
-//         input = prompt("Your turn: ROCK, PAPER or SCISSORS? Enter your choice.");
+    let input;
+    function getInput() {
+        input = prompt("Your turn: ROCK, PAPER or SCISSORS? Enter your choice.");
 
-//         if (input !== null && input !== undefined && input !== "") {
-//             // normalize case sensitivity
-//             input = input.toUpperCase();
-//             return input;
-//         } else if (input === "" || input == undefined || input == "" ) {
-//             getInput();
-//             return input;
-//         }
-//     }
+        if (input !== null && input !== undefined && input !== "") {
+            // normalize case sensitivity
+            input = input.toUpperCase();
+            return input;
+        } else if (input === "" || input == undefined || input == "" ) {
+            getInput();
+            return input;
+        }
+    }
     
-// // check input is one of three moves
+// check input is one of three moves
 
-//     function checkInput() {
-//         if (input !== "ROCK" && input !== "PAPER" && input !== "SCISSORS") {
-//             alert("Please choose \"ROCK\", \"PAPER\", or \"SCISSORS\".");
-//             getInput();
-//             checkInput();
-//         }
-//     }
+    function checkInput() {
+        if (input !== "ROCK" && input !== "PAPER" && input !== "SCISSORS") {
+            alert("Please choose \"ROCK\", \"PAPER\", or \"SCISSORS\".");
+            getInput();
+            checkInput();
+        }
+    }
 
-//     getInput();
-//     checkInput();
-//     console.log(input);
+    getInput();
+    checkInput();
+    console.log(input);
 
 
-//     // store input in humanChoice variable, for gameplay
+    // store input in humanChoice variable, for gameplay
 
-//     let humanChoice;
-//     switch (input) {
-//         case "ROCK":
-//             humanChoice = input;
-//         break;
-//         case "PAPER":
-//             humanChoice = input;
-//         break;
-//         case "SCISSORS":
-//             humanChoice = input;
-//         break;
-//     }
-//     return humanChoice;
+    let humanChoice;
+    switch (input) {
+        case "ROCK":
+            humanChoice = input;
+        break;
+        case "PAPER":
+            humanChoice = input;
+        break;
+        case "SCISSORS":
+            humanChoice = input;
+        break;
+    }
+    return humanChoice;
 
 }
 
