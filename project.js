@@ -77,7 +77,7 @@ function playRound() {
             if (humanScore > computerScore) {
                 outcome.textContent = `WINNER! Your final score is: ${humanScore}`;
             } else if (humanScore < computerScore) {
-                outcome.textContent = `LOSE! The computer wins!`;
+                outcome.textContent = `YOU LOST! The computer wins the game!`;
             } else if (humanScore === computerScore) {
                 outcome.textContent = `It's a tie! You didn't beat the computer.`;
             }
