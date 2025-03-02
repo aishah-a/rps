@@ -1,5 +1,7 @@
 # TOP-rps
 
+Live version available [here](https://aishah-a.github.io/rps/).
+
 ## Assignment
 **Step 1: Write the logic to get the computer choice** <br>
 Your game will be played against the computer. You will write a function that randomly returns “rock”, “paper” or “scissors”.
