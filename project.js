@@ -76,15 +76,10 @@ function playRound() {
             gameplay.remove();
             if (humanScore > computerScore) {
                 outcome.textContent = `WINNER! Your final score is: ${humanScore}`;
-                console.log("WINNER! Your score is: " + humanScore);
-                console.log("The computer score is: " + computerScore);
             } else if (humanScore < computerScore) {
                 outcome.textContent = `LOSE! The computer wins!`;
-                console.log("You lost! Your score is: " + humanScore);
-                console.log("The computer score is: " + computerScore);
             } else if (humanScore === computerScore) {
                 outcome.textContent = `It's a tie! You didn't beat the computer.`;
-                console.log("It's a tie! You didn't beat the computer.");
             }
         }
     }
