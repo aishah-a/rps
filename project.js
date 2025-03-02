@@ -1,127 +1,100 @@
-// 3 must be passed as argument
-function getComputerChoice(max) {
-    let number = Math.floor(Math.random() * max);
+let humanChoice;
+let humanScore = 0;
+let computerScore = 0;
 
-    // assign numbers 0, 1, 2 to ROCK, PAPER and SCISSORS
-    // random number determines computer move
+const buttons = document.querySelectorAll("button");
 
+const results = document.createElement("div");
+document.body.appendChild(results);
+
+const humanResult = document.createElement("div");
+humanResult.textContent = `Player: ${humanScore}`;
+results.appendChild(humanResult);
+
+const computerResult = document.createElement("div");
+computerResult.textContent = `Computer: ${computerScore}`;
+results.appendChild(computerResult);
+
+buttons.forEach(button => {
+    button.addEventListener("click", (event) => {
+        humanChoice = event.target.id.toUpperCase();
+        return humanChoice;
+    })
+
+    button.addEventListener("click", playRound);
+});
+
+const gameplay = document.createElement("p");
+results.appendChild(gameplay);
+
+const outcome = document.createElement("p");
+results.appendChild(outcome);
+
+
+function playRound() {
     let computerChoice;
-    switch (number) {
-        case 0:
-            computerChoice = "ROCK";
-            break;
-        case 1:
-            computerChoice = "PAPER";
-            break;
-        case 2:
-            computerChoice = "SCISSORS";
-            break;
-    }
-    // Display computer move
-    return computerChoice;
-}
-
-function getHumanChoice() {
-
-    let input;
-    function getInput() {
-        input = prompt("Your turn: ROCK, PAPER or SCISSORS? Enter your choice.");
-
-        if (input !== null && input !== undefined && input !== "") {
-            // normalize case sensitivity
-            input = input.toUpperCase();
-            return input;
-        } else if (input === "" || input == undefined || input == "" ) {
-            getInput();
-            return input;
-        }
-    }
+    function getComputerChoice(max) {
+        let number = Math.floor(Math.random() * max);
     
-// check input is one of three moves
+        // assign numbers 0, 1, 2 to ROCK, PAPER and SCISSORS
+        switch (number) {
+            case 0:
+                computerChoice = "ROCK";
+                break;
+            case 1:
+                computerChoice = "PAPER";
+                break;
+            case 2:
+                computerChoice = "SCISSORS";
+                break;
+        }
+        // Display computer move
+        return computerChoice;
+    }
 
-    function checkInput() {
-        if (input !== "ROCK" && input !== "PAPER" && input !== "SCISSORS") {
-            alert("Please choose \"ROCK\", \"PAPER\", or \"SCISSORS\".");
-            getInput();
-            checkInput();
+    function checkMoves() {
+        if ((humanScore < 5) && (computerScore < 5)) {
+            if (humanChoice === computerChoice) {
+                gameplay.textContent = `TIE! You both played ${humanChoice}.`;
+            } else if (
+                (humanChoice === "ROCK" && computerChoice === "SCISSORS") ||
+                (humanChoice === "PAPER" && computerChoice === "ROCK") ||
+                (humanChoice === "SCISSORS" && computerChoice === "PAPER")) {
+                humanScore++
+                humanResult.textContent = `Player: ${humanScore}`;
+                gameplay.textContent = `WIN! You played ${humanChoice}, and the computer played ${computerChoice}.`
+            } else {
+                computerScore++
+                computerResult.textContent = `Computer: ${computerScore}`;
+                gameplay.textContent = `LOSE! You played ${humanChoice}, but the computer played ${computerChoice}.`
+            }
         }
     }
 
-    getInput();
-    checkInput();
-    console.log(input);
-
-
-    // store input in humanChoice variable, for gameplay
-
-    let humanChoice;
-    switch (input) {
-        case "ROCK":
-            humanChoice = input;
-        break;
-        case "PAPER":
-            humanChoice = input;
-        break;
-        case "SCISSORS":
-            humanChoice = input;
-        break;
-    }
-    return humanChoice;
-
-}
-
-
-function playGame() {
-
-    let humanScore = 0;
-    let computerScore = 0;
-
-    // play round
-    let gameRound = 1;
-    
-    for (let i = 0; i < 5; i++) {
-        console.log("Round: " + gameRound);
-        playRound();
-        gameRound++;
-        checkScore();
-    }
-
-    // Check if player move beats computer - PLAY A ROUND
-    function playRound() {
-        
-        const computerChoice = getComputerChoice(3);
-        const humanChoice = getHumanChoice();
-    
-        // compare moves
-        if (humanChoice === computerChoice) {
-            console.log("Tie! You both played " + humanChoice);
-        } else if (
-            (humanChoice === "ROCK" && computerChoice === "SCISSORS") ||
-            (humanChoice === "PAPER" && computerChoice === "ROCK") ||
-            (humanChoice === "SCISSORS" && computerChoice === "PAPER")) {
-            console.log("You win! You played " + humanChoice + ". The computer played " + computerChoice);
-            humanScore++
-        } else {
-            console.log("You lose! You played " + humanChoice + ". The computer played " + computerChoice);
-            computerScore++
-        }
-    
-        console.log("Your score: " + humanScore);
-        console.log("Computer score: " + computerScore);
-    }
-    // check score after 5 rounds
-
-    function checkScore() {
-        if (gameRound === 6) {
+    function declareWinner() {
+        if ((humanScore === 5) || (computerScore === 5)) {
+            gameplay.remove();
             if (humanScore > computerScore) {
+                outcome.textContent = `WINNER! Your final score is: ${humanScore}`;
                 console.log("WINNER! Your score is: " + humanScore);
                 console.log("The computer score is: " + computerScore);
             } else if (humanScore < computerScore) {
+                outcome.textContent = `LOSE! The computer wins!`;
                 console.log("You lost! Your score is: " + humanScore);
                 console.log("The computer score is: " + computerScore);
             } else if (humanScore === computerScore) {
+                outcome.textContent = `It's a tie! You didn't beat the computer.`;
                 console.log("It's a tie! You didn't beat the computer.");
             }
         }
+    }
+
+    computerChoice = getComputerChoice(3);
+
+    if ((humanScore < 5) && (computerScore <5)) {
+        checkMoves();
+        declareWinner();
+    } else {
+        declareWinner();
     }
 }
